@@ -17,7 +17,7 @@ The repo has two layers:
 
 ## Getting started
 
-Prerequisites: Node.js 18+ and [pnpm](https://pnpm.io).
+Prerequisites: Node.js 22+ and [pnpm](https://pnpm.io).
 
 ```bash
 pnpm install
