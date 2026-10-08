@@ -1,4 +1,3 @@
-// Place your chat workflow and DurableAgent here!
 import { WorkflowAgent, type ModelCallStreamPart } from "@ai-sdk/workflow";
 import { getWritable } from "workflow";
 import {
