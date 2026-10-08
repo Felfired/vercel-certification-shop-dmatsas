@@ -6,8 +6,19 @@
  * Workshop docs: https://agent-foundations-certification.vercel.app/docs/workflows
  */
 
-export const POST = async () =>
-  new Response(
-    "Not implemented yet — finish the chat-agent workshop step to enable this route.",
-    { status: 501 },
-  );
+import { chatFlow } from "@/lib/workflows/chat-flow";
+import { createModelCallToUIChunkTransform } from "@ai-sdk/workflow/client";
+import type { UIMessage } from "ai";
+import { createUIMessageStreamResponse } from "ai";
+import { start } from "workflow/api";
+
+export async function POST(req: Request) {
+  const { messages }: { messages: UIMessage[] } = await req.json();
+  const run = await start(chatFlow, [messages]);
+  return createUIMessageStreamResponse({
+    stream: run.readable.pipeThrough(createModelCallToUIChunkTransform()),
+    headers: {
+      "x-workflow-run-id": run.runId,
+    },
+  });
+}
