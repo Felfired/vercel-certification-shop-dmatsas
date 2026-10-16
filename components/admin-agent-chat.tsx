@@ -22,7 +22,7 @@ import {
   MessageResponse,
 } from "./ai-elements/message";
 import { useChat } from "@ai-sdk/react";
-import { WorkflowChatTransport } from "@ai-sdk/workflow";
+import { WorkflowChatTransport } from "@ai-sdk/workflow/client";
 
 const SUGGESTIONS = [
   "Show me low-stock items",
